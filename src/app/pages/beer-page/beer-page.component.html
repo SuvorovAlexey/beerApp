@@ -1,0 +1,44 @@
+<div *ngIf="beer">
+  <div class="beer">
+
+    <div
+      class="beer__img"
+      [style.background-image]="'url('+ beer.image_url +')'"
+    ></div>
+
+    <div class="beer__info">
+      <p><span class="beer__info--text">Name:</span> {{beer.name}}</p>
+      <p><span class="beer__info--text">ABV:</span> {{beer.abv}}%</p>
+      <p><span class="beer__info--text">About:</span> {{beer.description}}</p>
+
+      <app-weight-page *ngIf="isOpenWeightScreen" (change)="updateData($event)" [currentWeightItem]="currentWeightItem"></app-weight-page>
+
+      <button class="save-button" *ngIf="wasWeightIngredient" (click)="goHome()">Save all ingredients and back to home</button>
+
+      <p class="beer__info--ingredient-name">HOPS: </p>
+      <div>
+        <div class="beer__info--ingredient-item" *ngFor="let hopsItem of beer.ingredients.hops">
+          <span>{{hopsItem.name}} - {{hopsItem.amount.value}} {{hopsItem.amount.unit}}</span>
+          <button class="beer__info--ingredient-item-button" *ngIf="!hopsItem.wasWeight" (click)="openWeightScreen(hopsItem, 'hops')">Weigh Hops</button>
+          <mat-icon class="beer__info--ingredient-item-done" *ngIf="hopsItem.wasWeight" aria-label="done">done</mat-icon>
+        </div>
+      </div>
+
+      <p class="beer__info--ingredient-name">MALT: </p>
+      <div>
+          <div class="beer__info--ingredient-item" *ngFor="let maltItem of beer.ingredients.malt">
+            <span>{{maltItem.name}} - {{maltItem.amount.value}} {{maltItem.amount.unit}}</span>
+            <button class="beer__info--ingredient-item-button" *ngIf="!maltItem.wasWeight" (click)="openWeightScreen(maltItem, 'malt')">Weigh Malt</button>
+            <mat-icon class="beer__info--ingredient-item-done" *ngIf="maltItem.wasWeight" aria-label="done">done</mat-icon>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="!beer" class="error-page">
+  <p>Sorry, something went wrong.</p>
+  <button (click)="goHome()">Go to main</button>
+</div>
+

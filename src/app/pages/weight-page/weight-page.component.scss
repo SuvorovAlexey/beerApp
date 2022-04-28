@@ -1,0 +1,62 @@
+.weight-page-wrapper {
+  height: 800px;
+  height: 335px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #232121;
+  color: #FFFFFF;
+  border-radius: 8px;
+
+  p {
+    color: #FFFFFF;
+    text-align: center;
+  }
+}
+
+.glass-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.filled-icon {
+  color: #3242b2;
+}
+
+.progress-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar {
+  display: block;
+  width: 70%;
+  margin: 0 20px;
+}
+
+.weight-button {
+  display: block;
+  margin: 20px auto;
+  background: transparent;
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  border: 3px solid #3242b2;
+  color: #3242b2;
+  font-size: 25px;
+}
+
+.save-button {
+  display: block;
+  border: 2px solid #fd5d24;
+  color: #fd5d24;
+  padding: 1px 8px;
+  border-radius: 8px;
+  font-size: 18px;
+  margin: 5px auto;
+  padding: 3px;
+  background: transparent;
+  cursor: pointer;
+}

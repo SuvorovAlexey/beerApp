@@ -1,0 +1,32 @@
+<div class="page-wrapper">
+  <div class="beers-wrapper">
+    <div *ngFor="let beer of beers" (click)="openBeerInfo(beer)">
+
+      <div class="beer">
+
+        <div
+          class="beer__img"
+          [style.background-image]="'url('+ beer.image_url +')'"
+        ></div>
+
+        <div class="beer__info">
+          <p class="beer__info-name">{{beer.name}}</p>
+          <p>ABV: {{beer.abv}}%</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div
+      *ngFor="let paginationItem of paginationArray"
+      class="pagination__item"
+      [class.pagination__current-pagination]="paginationItem.isPushed"
+      (click)="pushPaginationButton(paginationItem.number)">
+      {{paginationItem.number}}
+    </div>
+  </div>
+</div>
+
+
