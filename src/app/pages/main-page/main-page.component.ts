@@ -69,52 +69,8 @@ interface PaginationItem {
 export class MainPageComponent implements OnInit {
 
   public beers: Beer[] = [];
-  public paginationArray: PaginationItem[] = [
-    {
-      number: 1,
-      isPushed: false
-    },
-    {
-      number: 2,
-      isPushed: false
-    },
-    {
-      number: 3,
-      isPushed: false
-    },
-    {
-      number: 4,
-      isPushed: false
-    },
-    {
-      number: 5,
-      isPushed: false
-    },
-    {
-      number: 6,
-      isPushed: false
-    },
-    {
-      number: 7,
-      isPushed: false
-    },
-    {
-      number: 8,
-      isPushed: false
-    },
-    {
-      number: 9,
-      isPushed: false
-    },
-    {
-      number: 10,
-      isPushed: false
-    },
-    {
-      number: 11,
-      isPushed: false
-    },
-  ]
+  public paginationArray: PaginationItem[] = [];
+  public currentPaginationPage: number = 1;
 
   constructor(
     private router: Router,
@@ -125,13 +81,27 @@ export class MainPageComponent implements OnInit {
     await this.loadData();
   }
 
-  private async loadData() {
+  private async loadData(): Promise<void> {
+    this.fillPaginationArray();
+
     if (this.beerChangeService.state.length === 0) {
-      await this.pushPaginationButton(1);
+      await this.beerChangeService.getBeers(this.currentPaginationPage);
       this.beers = [...this.beerChangeService.state];
+      this.paginationArray[0].isPushed = true;
     }
     else {
       this.beers = [...this.beerChangeService.state];
+    }
+  }
+
+  private fillPaginationArray(): void {
+    for (let i = 1; i <= 11; i++) {
+      this.paginationArray.push(
+        {
+          number: i,
+          isPushed: false,
+        }
+      );
     }
   }
 
@@ -141,17 +111,15 @@ export class MainPageComponent implements OnInit {
   }
 
   public async pushPaginationButton(numberOfButton: number): Promise<void> {
+    this.currentPaginationPage = numberOfButton;
     await this.beerChangeService.getBeers(numberOfButton);
     this.beers = [...this.beerChangeService.state];
 
     this.paginationArray.forEach(item => {
-      if (numberOfButton === item.number) {
-        item.isPushed = true;
-      }
-      else {
-        item.isPushed = false;
-      }
+      item.isPushed = false;
     });
+
+    this.paginationArray[this.currentPaginationPage - 1].isPushed = true;
   }
 
 }
