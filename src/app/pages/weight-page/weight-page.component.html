@@ -1,0 +1,23 @@
+<div class="weight-page-wrapper">
+  <div *ngIf="item">
+    <p>{{currentWeightItem.name}}</p>
+    <p>Need to add: {{currentWeightItem.amount.value}} {{currentWeightItem.amount.unit}}</p>
+    <p>Current weight is {{currentWeight}} gr</p>
+  </div>
+
+  <mat-icon class="glass-icon" [class.filled-icon]="isDoneWeight" aria-label="glass icon">local_drink</mat-icon>
+
+  <div class="progress-bar-wrapper">
+    <span>0 gr</span>
+    <mat-progress-bar class="progress-bar" mode="determinate" [value]="currentWeightInPercent"></mat-progress-bar>
+    <span>{{currentWeightItem.amount.value}} {{currentWeightItem.amount.unit}}</span>
+  </div>
+
+  <button [disabled]="isWeightButtonPushed" class="weight-button" (click)="startWeight()">
+    <span *ngIf="currentWeight > 0">{{currentWeight}}</span>
+    <span *ngIf="currentWeight === 0">Start</span>
+  </button>
+
+  <button *ngIf="isDoneWeight" class="save-button" (click)="saveResult()">Save this ingredient</button>
+
+</div>
