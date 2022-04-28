@@ -14,15 +14,14 @@
 `ng serve --open`
 7. Enjoy =)
 
-
-## Notes about Project
+## Notes about project
 1. I don`t use any dependencies (only Angular + Angular Material)
 2. I noticed that the values in the stream have different values. 
 First they increase, then they may fall, but _I implemented an upstream only value flow_ to simplify.
 3. I don't use state libraries like Redux, but I still keep the weighted ingredients (more info in the comments in beer-change.service.ts)
 4. I use Weight screen as part of Beer Details screen for user convenience, but the Weight screen remains a separate component.
 5. I add a pagination (it wasn't in the test description).
-
+6. Tests: in my current job I use Angular + Jest, but one of requirements was don`t use dependencies. I do not have experience with Angular "from box" testing tools: Jasmine and Carma.
 
 ## User flow
 1. Firstly we see a Main page. We can click by some beer (and go to Beer page) and click by pagination page (and fetch new beers).
